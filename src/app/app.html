@@ -2,7 +2,7 @@
   <input matInput placeholder="Search/Add" type="text" (keyup)="filterItems()" [(ngModel)]="value"/>
 </mat-form-field>
 
-<button matButton (click)="addItem()" [disabled]="containItem">ADD</button>
+<button matButton (click)="addItem()" [disabled]="enableAdd">ADD</button>
 
 <button matButton (click)="removeItems()">DELETE</button>
 

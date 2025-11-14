@@ -16,14 +16,11 @@ import {NgStyle} from '@angular/common';
 export class App {
   items: IItem[] = [];
   value: string = '';
-  containItem: boolean = false;
+  enableAdd: boolean = false;
 
   addItem() {
     this.items.push({name: this.value, selected: false, hidden: false});
-    this.value = '';
-    for (let i = this.items.length - 1; i >= 0; i--) {
-      this.items[i].hidden = false;
-    }
+    this.showAllItems();
   }
 
   removeItems() {
@@ -32,15 +29,16 @@ export class App {
         this.items.splice(i, 1);
       }
     }
+    this.showAllItems();
   }
 
   filterItems() {
     if (this.value == '') return;
-    this.containItem = false;
+    this.enableAdd = false;
     for (let i = this.items.length - 1; i >= 0; i--) {
       if (this.items[i].name == this.value) {
         this.items[i].hidden = false;
-        this.containItem = true;
+        this.enableAdd = true;
       } else {
         this.items[i].hidden = true;
       }
@@ -49,5 +47,12 @@ export class App {
 
   updateItem(checked: boolean, item: IItem) {
     item.selected = checked;
+  }
+
+  showAllItems() {
+    this.value = '';
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      this.items[i].hidden = false;
+    }
   }
 }
