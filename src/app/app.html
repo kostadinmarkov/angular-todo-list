@@ -4,7 +4,7 @@
 
 <button matButton (click)="addItem()" [disabled]="enableAdd">ADD</button>
 
-<button matButton (click)="removeItems()">DELETE</button>
+<button matButton (click)="removeItems()" [disabled]="this.selectedItems.length == 0">DELETE</button>
 
 <mat-list>
   @for (item of items; track item) {
@@ -12,7 +12,7 @@
       <mat-list-item>
         <mat-checkbox
           [checked]="item.selected"
-          (change)="updateItem($event.checked, item)"
+          (change)="selectItem($event.checked, item)"
         >
           {{ item.name }}
         </mat-checkbox>
